@@ -26,16 +26,16 @@ public class TextBoxTests {
     String MySubject = "Computer Science";
     String[] MyHobbies = new String[] {"Reading", "Music"};
     String MyPic = "pic.png";
-    String MyCurrentAddress = "Nizhniy Novgorod";
+    String MyCurrentAddress = "Huragda st";
+    String MyState = "Uttar Pradesh";
+    String MyCity = "Lucknow";
+
 
 
     @BeforeAll
     static void beforeAll() {
-
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
-
     }
 
     @Test
@@ -57,9 +57,9 @@ public class TextBoxTests {
         $("#uploadPicture").uploadFromClasspath(MyPic);
         $("#currentAddress").setValue(MyCurrentAddress);
         $("#state").scrollIntoView(true).click();
-        $("#react-select-3-option-1").click();
+        $("#react-select-3-input").setValue(MyState).pressEnter();
         $("#city").click();
-        $("#react-select-4-option-0").click();
+        $("#react-select-4-input").setValue(MyCity).pressEnter();
         $("#submit").click();
 
 
@@ -73,6 +73,6 @@ public class TextBoxTests {
         $$("table tr").findBy(text("Hobbies")).shouldHave(text(MyHobbies[0]+", "+MyHobbies[1]));
         $$("table tr").findBy(text("Picture")).shouldHave(text(MyPic));
         $$("table tr").findBy(text("Address")).shouldHave(text(MyCurrentAddress));
-        $$("table tr").findBy(text("State and City")).shouldHave(text("Uttar Pradesh Agra"));
+        $$("table tr").findBy(text("State and City")).shouldHave(text(MyState + " " + MyCity));
     }
 }
