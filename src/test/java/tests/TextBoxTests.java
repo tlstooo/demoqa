@@ -54,8 +54,7 @@ public class TextBoxTests {
         $("#subjectsInput").setValue(MySubject).pressEnter();
         $$(".custom-control-label").findBy(text(MyHobbies[0])).click();
         $$(".custom-control-label").findBy(text(MyHobbies[1])).click();
-        $("#uploadPicture" +
-                "").uploadFromClasspath(MyPic);
+        $("#uploadPicture").uploadFromClasspath(MyPic);
         $("#currentAddress").setValue(MyCurrentAddress);
         $("#state").scrollIntoView(true).click();
         $("#react-select-3-option-1").click();
