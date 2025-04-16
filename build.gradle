@@ -1,0 +1,24 @@
+plugins {
+    id("java")
+}
+
+group = "guru.qa.tlsto"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:7.8.0",
+            platform("org.junit:junit-bom:5.10.0"),
+            "org.junit.jupiter:junit-jupiter",
+            'org.slf4j:slf4j-simple:2.0.7'
+    )
+
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
