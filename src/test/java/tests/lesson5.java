@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import static com.codeborne.selenide.CollectionCondition.itemWithText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.DragAndDropOptions.to;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -23,5 +24,19 @@ public class lesson5 {
 
         $$("#hero-section-brand-heading").shouldHave(itemWithText("The AI-powered\n" +
                 "developer platform"));
+    }
+
+    @Test
+    public void dndActionsTest() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+        actions().clickAndHold().moveToElement($("#column-a")).clickAndHold().moveToElement($("#column-b")).release().perform();
+        sleep(5000);
+    }
+
+    @Test
+    public void dndTest() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+        $("#column-a").dragAndDrop(to($("#column-b")));
+        sleep(5000);
     }
 }
