@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class lesson5 {
 
     @Test
-    public void HoverTest() {
+    public void hoverTest() {
         open("https://github.com");
         $(withText("Solutions")).hover();
         $(withText("Enterprises")).click();
@@ -27,16 +27,25 @@ public class lesson5 {
     }
 
     @Test
-    public void DndActionsTest() {
+    public void dndActionsTest() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
         actions().clickAndHold().moveToElement($("#column-a")).clickAndHold().moveToElement($("#column-b")).release().perform();
-        sleep(5000);
+        $("#column-a header").shouldHave(text("B"));
+
     }
 
     @Test
-    public void DndTest() {
+    public void dndTest() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
         $("#column-a").dragAndDrop(to($("#column-b")));
-        sleep(5000);
+        $("#column-a header").shouldHave(text("B"));
+        $("#column-b header").shouldHave(text("A"));
+
+
+
     }
 }
