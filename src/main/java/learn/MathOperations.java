@@ -1,8 +1,5 @@
 package learn;
 
-
-import java.sql.SQLOutput;
-
 public class MathOperations {
     public static void main(String[] args) {
 
