@@ -18,16 +18,16 @@ public class automationPracticeFormTest {
     String MyName = "Sergey",
             MyLastName = "Frolov",
             MyEmail = "SFrolov@test.ru",
-     MyGender = "Male",
-     MyPhoneNumber = "9999999999",
-     MyBirthdayDay = "04",
-     MyBirthdayMonth = "11",
-     MyBirthdayYear = "1994",
-     MySubject = "Computer Science",
-     MyPic = "pic.png",
-     MyCurrentAddress = "Huragda st",
-     MyState = "Uttar Pradesh",
-     MyCity = "Lucknow";
+            MyGender = "Male",
+            MyPhoneNumber = "9999999999",
+            MyBirthdayDay = "04",
+            MyBirthdayMonth = "11",
+            MyBirthdayYear = "1994",
+            MySubject = "Computer Science",
+            MyPic = "pic.png",
+            MyCurrentAddress = "Huragda st",
+            MyState = "Uttar Pradesh",
+            MyCity = "Lucknow";
 
     String[] Month = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"},
             MyHobbies = new String[] {"Reading", "Music"};
@@ -72,5 +72,40 @@ public class automationPracticeFormTest {
                 .checkResult("Picture", MyPic)
                 .checkResult("Address", MyCurrentAddress)
                 .checkResult("State and City", MyState + " " + MyCity);
+    }
+    //====ПРОВЕРКА ВВОДА НОМЕРА НЕДОПУСТИМОЙ ДЛИНЫ====//
+    @Test
+    public void negativeInputRegistrationTest() {
+        registrationPage
+                .openPage()
+                .removeBanners()
+                .setPhoneNumber(ElevenDigitsPhoneNumber)
+                .clickSubmitButton();
+
+
+        registrationPage
+                .checkNegativeInputResult("Phone Number", ElevenDigitsPhoneNumber);
+    }
+
+
+    @Test
+    public void obligatoryFieldsTest()
+    {
+        registrationPage
+                .openPage()
+                .removeBanners()
+                .setFirstName(MyName)
+                .setLastName(MyLastName)
+                .setGender(MyGender)
+                .setPhoneNumber(MyPhoneNumber)
+                .clickSubmitButton();
+
+        registrationPage
+                .checkRadioColor("Gender","green")
+                .checkBorderColor("First Name","green")
+                .checkBorderColor("Last Name","green")
+                .checkResult("Student Name", MyName + " " + MyLastName)
+                .checkResult("Gender", MyGender)
+                .checkResult("Mobile", MyPhoneNumber);
     }
 }

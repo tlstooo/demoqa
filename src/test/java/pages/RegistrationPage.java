@@ -3,14 +3,24 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
+import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    //=======VARIABLES==========//
-    private final String registrationPageURL = "/automation-practice-form";
+    //=====HELPER VARIABLES=====//
+    private final String
+            registrationPageURL = "/automation-practice-form",
+            cssBorderColor = "border-color",
+            cssRadioColor = "color",
+            redColor = "rgb(220, 53, 69)",
+            greyColor = "rgb(206, 212, 218)",
+            greenColor = "rgb(40, 167, 69)",
+            redColorAlpha = "rgba(220, 53, 69, 1)",
+            greyColorAlpha = "rgba(220, 53, 69, 1)",
+            greenColorAlpha = "rgba(40, 167, 69, 1)";
 
     //======TEST LOCATORS=======//
     private final SelenideElement firstNameLocator = $("#firstName"),
@@ -124,4 +134,56 @@ public class RegistrationPage {
         return this;
     }
 
+    public RegistrationPage checkNegativeInputResult (String key, String value) {
+        if (key == "Phone Number") {
+            phoneNumberLocator.shouldNotHave(text(value));
+        }
+        return this;
+    }
+
+    public RegistrationPage checkBorderColor (String key, String value) {
+        switch (value) {
+            case "red":
+                value = redColor;
+                break;
+            case "grey":
+                value = greyColor;
+                break;
+            case "green":
+                value = greenColor;
+                break;
+        }
+        switch (key) {
+            case "First Name":
+                firstNameLocator.shouldHave(cssValue(cssBorderColor,value));
+                break;
+            case "Last Name":
+                lastNameLocator.shouldHave(cssValue(cssBorderColor,value));
+                break;
+            case "Phone Number":
+                phoneNumberLocator.shouldHave(cssValue(cssBorderColor,value));
+                break;
+        }
+        return this;
+    }
+
+    public RegistrationPage checkRadioColor (String key, String value) {
+        switch (value) {
+            case "red":
+                value = redColorAlpha;
+                break;
+            case "grey":
+                value = greyColorAlpha;
+                break;
+            case "green":
+                value = greenColorAlpha;
+                break;
+        }
+        switch (key) {
+            case "Gender":
+                genderLocator.$(byText("Male")).shouldHave(cssValue(cssRadioColor,value));
+                break;
+        }
+        return this;
+    }
 }

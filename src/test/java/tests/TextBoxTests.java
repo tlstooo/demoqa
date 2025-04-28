@@ -2,34 +2,21 @@ package tests;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import com.codeborne.selenide.Configuration;
+import pages.TextBoxPage;
 
-import java.lang.reflect.Array;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 
 public class TextBoxTests {
 
+    TextBoxPage textBoxPage = new TextBoxPage();
+
     String MyName = "Sergey";
     String MyLastName = "Frolov";
     String MyEmail = "MyEmail@email.com";
-    String MyNumber = "9999999999";
-    String MyBirthdayMonth = "11";
-    String MyBirthdayYear = "1994";
-    String MyBirthdayDay = "4";
-    String MyGender = "Male";
-    String[] Month = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-    String MySubject = "Computer Science";
-    String[] MyHobbies = new String[] {"Reading", "Music"};
-    String MyPic = "pic.png";
-    String MyCurrentAddress = "Huragda st";
-    String MyState = "Uttar Pradesh";
-    String MyCity = "Lucknow";
-
+    String MyBrokenEmail = "MyEmail";
+    String MyCurrentAddress = "Uttar Pradesh";
+    String MyPermanentAddress = "Lucknow Nek Rech";
 
 
     @BeforeAll
@@ -38,4 +25,34 @@ public class TextBoxTests {
         Configuration.browserSize = "1920x1080";
     }
 
+    @Test
+    public void successfulTextBoxTest() {
+        textBoxPage
+                .openPage()
+                .removeBanners()
+                .setFullName(MyName, MyLastName)
+                .setEmail(MyEmail)
+                .setCurrentAddress(MyCurrentAddress)
+                .setPermanentAddress(MyPermanentAddress)
+                .clickSubmitButton();
+
+        textBoxPage
+                .checkOutput("Name",MyName + " " + MyLastName)
+                .checkOutput("Email",MyEmail)
+                .checkOutput("Current Address",MyCurrentAddress)
+                .checkOutput("Permananet Address",MyPermanentAddress);
+    }
+
+    @Test
+    public void emailInputValidationTest() {
+        textBoxPage
+                .openPage()
+                .removeBanners()
+                .setEmail(MyBrokenEmail)
+                .clickSubmitButton();
+
+        textBoxPage
+                .checkEmailInput();
+    }
 }
+
