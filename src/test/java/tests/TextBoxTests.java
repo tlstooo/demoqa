@@ -11,18 +11,19 @@ public class TextBoxTests {
 
     TextBoxPage textBoxPage = new TextBoxPage();
 
-    String MyName = "Sergey";
-    String MyLastName = "Frolov";
-    String MyEmail = "MyEmail@email.com";
-    String MyBrokenEmail = "MyEmail";
-    String MyCurrentAddress = "Uttar Pradesh";
-    String MyPermanentAddress = "Lucknow Nek Rech";
+    String myName = "Sergey";
+    String myLastName = "Frolov";
+    String myEmail = "myEmail@email.com";
+    String myBrokenEmail = "myEmail";
+    String myCurrentAddress = "Uttar Pradesh";
+    String myPermanentAddress = "Lucknow Nek Rech";
 
 
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
@@ -30,17 +31,17 @@ public class TextBoxTests {
         textBoxPage
                 .openPage()
                 .removeBanners()
-                .setFullName(MyName, MyLastName)
-                .setEmail(MyEmail)
-                .setCurrentAddress(MyCurrentAddress)
-                .setPermanentAddress(MyPermanentAddress)
+                .setFullName(myName, myLastName)
+                .setEmail(myEmail)
+                .setCurrentAddress(myCurrentAddress)
+                .setPermanentAddress(myPermanentAddress)
                 .clickSubmitButton();
 
         textBoxPage
-                .checkOutput("Name",MyName + " " + MyLastName)
-                .checkOutput("Email",MyEmail)
-                .checkOutput("Current Address",MyCurrentAddress)
-                .checkOutput("Permananet Address",MyPermanentAddress);
+                .checkOutput("Name",myName + " " + myLastName)
+                .checkOutput("Email",myEmail)
+                .checkOutput("Current Address",myCurrentAddress)
+                .checkOutput("Permananet Address",myPermanentAddress);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class TextBoxTests {
         textBoxPage
                 .openPage()
                 .removeBanners()
-                .setEmail(MyBrokenEmail)
+                .setEmail(myBrokenEmail)
                 .clickSubmitButton();
 
         textBoxPage
