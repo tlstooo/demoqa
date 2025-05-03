@@ -1,34 +1,24 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import utils.RandomizeData;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AutomationPracticeFormTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
+    Faker faker = new Faker(new Locale("en"));
+    RandomizeData randomizeData = new RandomizeData();
 
-    //====POSITIVE VARIABLES====//
-    String myName = "Sergey",
-            myLastName = "Frolov",
-            myEmail = "SFrolov@test.ru",
-            myGender = "Male",
-            myPhoneNumber = "9999999999",
-            myBirthdayDay = "04",
-            myBirthdayMonth = "11",
-            myBirthdayYear = "1994",
-            mySubject = "Computer Science",
-            myPic = "pic.png",
-            myCurrentAddress = "Huragda st",
-            myState = "Uttar Pradesh",
-            myCity = "Lucknow";
-
-    String[] Month = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"},
-            myHobbies = new String[] {"Reading", "Music"};
+    public String[] months = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     //====NEGATIVE VARIABLES====//
-    String elevenDigitsPhoneNumber = "79999999999";
 
     @BeforeAll
     static void beforeAll() {
@@ -42,31 +32,31 @@ public class AutomationPracticeFormTest {
 
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName(myName)
-                .setLastName(myLastName)
-                .setEmail(myEmail)
-                .setGender(myGender)
-                .setPhoneNumber(myPhoneNumber)
-                .setDateOfBirth(myBirthdayDay, myBirthdayMonth, myBirthdayYear)
-                .setSubjects(mySubject)
-                .setHobbies(myHobbies)
-                .setUploadPic(myPic)
-                .setCurrentAddress(myCurrentAddress)
-                .setState(myState)
-                .setCity(myCity)
+                .setFirstName(randomizeData.firstName)
+                .setLastName(randomizeData.lastName)
+                .setEmail(randomizeData.email)
+                .setGender(randomizeData.gender)
+                .setPhoneNumber(randomizeData.phone)
+                .setDateOfBirth(randomizeData.day, randomizeData.month, randomizeData.year)
+                .setSubjects(randomizeData.subject)
+                .setHobbies(randomizeData.hobbies)
+                .setUploadPic(randomizeData.pics)
+                .setCurrentAddress(randomizeData.currentAddress)
+                .setState(randomizeData.state)
+                .setCity(randomizeData.city)
                 .clickSubmitButton();
 
         registrationPage
-                .checkResult("Student Name", myName + " " + myLastName)
-                .checkResult("Student Email", myEmail)
-                .checkResult("Gender", myGender)
-                .checkResult("Mobile", myPhoneNumber)
-                .checkResult("Date of Birth", myBirthdayDay + " " + Month[Integer.parseInt(myBirthdayMonth) - 1] + "," + myBirthdayYear)
-                .checkResult("Subjects", mySubject)
-                .checkResult("Hobbies", myHobbies[0] + ", " + myHobbies[1])
-                .checkResult("Picture", myPic)
-                .checkResult("Address", myCurrentAddress)
-                .checkResult("State and City", myState + " " + myCity);
+                .checkResult("Student Name", randomizeData.firstName + " " + randomizeData.lastName)
+                .checkResult("Student Email", randomizeData.email)
+                .checkResult("Gender", randomizeData.gender)
+                .checkResult("Mobile", randomizeData.phone)
+                .checkResult("Date of Birth", randomizeData.day + " " + months[Integer.parseInt(randomizeData.month)-1] + "," + randomizeData.year)
+                .checkResult("Subjects", randomizeData.subject)
+                .checkResult("Hobbies", randomizeData.hobbies)
+                .checkResult("Picture", randomizeData.pics)
+                .checkResult("Address", randomizeData.currentAddress)
+                .checkResult("State and City", randomizeData.state + " " + randomizeData.city);
     }
     //====ПРОВЕРКА ВВОДА НОМЕРА НЕДОПУСТИМОЙ ДЛИНЫ====//
     @Test
@@ -74,12 +64,12 @@ public class AutomationPracticeFormTest {
         registrationPage
                 .openPage()
                 .removeBanners()
-                .setPhoneNumber(elevenDigitsPhoneNumber)
+                .setPhoneNumber(randomizeData.elevenDigitsPhoneNumber)
                 .clickSubmitButton();
 
 
         registrationPage
-                .checkNegativeInputResult("Phone Number", elevenDigitsPhoneNumber);
+                .checkNegativeInputResult("Phone Number", randomizeData.elevenDigitsPhoneNumber);
     }
 
 
@@ -89,18 +79,18 @@ public class AutomationPracticeFormTest {
         registrationPage
                 .openPage()
                 .removeBanners()
-                .setFirstName(myName)
-                .setLastName(myLastName)
-                .setGender(myGender)
-                .setPhoneNumber(myPhoneNumber)
+                .setFirstName(randomizeData.firstName)
+                .setLastName(randomizeData.lastName)
+                .setGender(randomizeData.gender)
+                .setPhoneNumber(randomizeData.phone)
                 .clickSubmitButton();
 
         registrationPage
                 .checkRadioColor("Gender","green")
                 .checkBorderColor("First Name","green")
                 .checkBorderColor("Last Name","green")
-                .checkResult("Student Name", myName + " " + myLastName)
-                .checkResult("Gender", myGender)
-                .checkResult("Mobile", myPhoneNumber);
+                .checkResult("Student Name", randomizeData.firstName + " " + randomizeData.lastName)
+                .checkResult("Gender", randomizeData.gender)
+                .checkResult("Mobile", randomizeData.phone);
     }
 }
