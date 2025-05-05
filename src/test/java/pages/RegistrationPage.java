@@ -95,10 +95,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setHobbies(String[] hobbies) {
-        for (String hobby : hobbies) {
-            hobbiesInputLocator.$(byText(hobby)).click();
-        }
+    public RegistrationPage setHobbies(String hobbies) {
+            hobbiesInputLocator.$(byText(hobbies)).click();
         return this;
     }
 
