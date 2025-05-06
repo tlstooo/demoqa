@@ -3,22 +3,18 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomizeData;
-
-import java.util.Calendar;
 import java.util.Locale;
 
 public class AutomationPracticeFormTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
-    Faker faker = new Faker(new Locale("en"));
     RandomizeData randomizeData = new RandomizeData();
 
     public String[] months = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-
-    //====NEGATIVE VARIABLES====//
 
     @BeforeAll
     static void beforeAll() {
@@ -27,6 +23,7 @@ public class AutomationPracticeFormTest {
         Configuration.pageLoadStrategy = "eager";
     }
 
+    @DisplayName("Проверка всех полей на странице регистрации")
     @Test
     public void successfulRegistrationTest() {
 
@@ -58,7 +55,8 @@ public class AutomationPracticeFormTest {
                 .checkResult("Address", randomizeData.currentAddress)
                 .checkResult("State and City", randomizeData.state + " " + randomizeData.city);
     }
-    //====ПРОВЕРКА ВВОДА НОМЕРА НЕДОПУСТИМОЙ ДЛИНЫ====//
+
+    @DisplayName("Проверка номера недопустимой длины")
     @Test
     public void negativeInputRegistrationTest() {
         registrationPage
@@ -72,7 +70,7 @@ public class AutomationPracticeFormTest {
                 .checkNegativeInputResult("Phone Number", randomizeData.elevenDigitsPhoneNumber);
     }
 
-
+    @DisplayName("Проверка заполнения только обязательных полей")
     @Test
     public void obligatoryFieldsTest()
     {
