@@ -46,7 +46,7 @@ public class ParametrizeTest {
 
     @ParameterizedTest(name = "Поиск товаров по имени {0}")
     @ValueSource(strings = {
-            "Цитатник Джейсона Стэтхэма", "Солнцезащитные очки", "Манго"
+            "Кирпич", "Солнцезащитные очки", "Манго"
     })
     public void testSearchFunctionality(String searchQuery) {
         $("#header-search").setValue(searchQuery).pressEnter();
@@ -56,7 +56,7 @@ public class ParametrizeTest {
     static Stream<Arguments> testSearchFunctionality() {
         return Stream.of(
                 Arguments.of(
-                List.of("Ultima","Сплит","Любимая категория","Из-за рубежа","Одежда", "Дом", "Детям", "Красота"))
+                List.of("Ultima","Сплит","Любимая категория","Из-за рубежа","Одежда", "Дом", "Ремонт", "Детям"))
         );
     }
     
