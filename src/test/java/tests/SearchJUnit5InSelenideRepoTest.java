@@ -5,16 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import com.codeborne.selenide.Configuration;
 
-import java.lang.reflect.Array;
-
-import static com.codeborne.selenide.CollectionCondition.itemWithText;
-import static com.codeborne.selenide.Condition.selectedText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class searchJUnit5InSelenideRepoTest {
+public class SearchJUnit5InSelenideRepoTest {
 
     String targetRepo = "Selenide";
     String targetText = "selenide/";
