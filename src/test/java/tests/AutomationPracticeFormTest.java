@@ -10,8 +10,6 @@ import pages.RegistrationPage;
 import utils.RandomizeData;
 import java.util.Locale;
 
-import static com.codeborne.selenide.Selenide.open;
-
 @Tag("automation-practice-form")
 public class AutomationPracticeFormTest {
 
@@ -30,8 +28,7 @@ public class AutomationPracticeFormTest {
     @DisplayName("Проверка всех полей на странице регистрации")
     @Test
     public void successfulRegistrationTest() {
-        open("/automation-practice-form");
-        registrationPage
+        registrationPage.openPage()
                 .removeBanners()
                 .setFirstName(randomizeData.firstName)
                 .setLastName(randomizeData.lastName)
@@ -64,6 +61,7 @@ public class AutomationPracticeFormTest {
     @Test
     public void negativeInputRegistrationTest() {
         registrationPage
+                .openPage()
                 .removeBanners()
                 .setPhoneNumber(randomizeData.elevenDigitsPhoneNumber)
                 .clickSubmitButton();
@@ -78,6 +76,7 @@ public class AutomationPracticeFormTest {
     public void obligatoryFieldsTest()
     {
         registrationPage
+                .openPage()
                 .removeBanners()
                 .setFirstName(randomizeData.firstName)
                 .setLastName(randomizeData.lastName)
