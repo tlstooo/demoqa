@@ -4,11 +4,13 @@ import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomizeData;
 import java.util.Locale;
 
+@Tag("automation-practice-form")
 public class AutomationPracticeFormTest {
 
     RegistrationPage registrationPage = new RegistrationPage();

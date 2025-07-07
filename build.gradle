@@ -44,4 +44,18 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task automationPracticeForm(type: Test)
+{
+    useJUnitPlatform {
+        includeTags("automation-practice-form")
+    }
 }
