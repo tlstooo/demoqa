@@ -27,6 +27,7 @@ public class SelenideTest {
 
     @BeforeAll
     static void beforeAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.baseUrl = "https://github.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
@@ -40,7 +41,6 @@ public class SelenideTest {
     @Link(value = "GitHub", url = "https://github.com/"+repo)
     @DisplayName("Проверка наличия issue с номером " + issueNum + " в репозитории "+repo)
     public void testIssueSearch() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         open("/");
         $(".header-search-button").click();
         $("#query-builder-test").sendKeys(repo);
