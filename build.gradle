@@ -53,7 +53,7 @@ tasks.test {
     }
 }
 
-task automationPracticeForm(type: Test)
+tasks.register('automationPracticeForm', Test)
 {
     useJUnitPlatform {
         includeTags("automation-practice-form")
