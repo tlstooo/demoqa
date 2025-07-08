@@ -6,6 +6,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -25,9 +26,13 @@ public class SelenideTest {
 
     private static final int issueNum = 1;
 
+    @BeforeEach
+    public void beforeEach() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
     @BeforeAll
     static void beforeAll() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+
         Configuration.baseUrl = "https://github.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
