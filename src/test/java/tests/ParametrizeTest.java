@@ -22,11 +22,8 @@ public class ParametrizeTest {
 
     @BeforeAll
     public static void setup() {
-        Configuration.browserSize = System.getProperty("BROWSER_RESOLUTION");
-        Configuration.browser = System.getProperty("BROWSER");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = System.getProperty("SELENOID_URL");
-        Configuration.browserVersion = System.getProperty("BROWSER_VERSION");
+
     }
 
     @BeforeEach
