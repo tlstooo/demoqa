@@ -66,7 +66,7 @@ public class AutomationPracticeFormTest {
         step("Проверяем имя и фамилию", () -> {registrationPage.checkResult("Student Name", randomizeData.firstName + " " + randomizeData.lastName);});
         step("Проверяем email", () -> {registrationPage.checkResult("Student Email", randomizeData.email);});
         step("Проверяем пол", () -> {registrationPage.checkResult("Gender", randomizeData.gender);});
-        step("Проверяем номер телефона", () -> {registrationPage.checkResult("Phone Number", randomizeData.phone);});
+        step("Проверяем номер телефона", () -> {registrationPage.checkResult("Mobile", randomizeData.phone);});
         step("Проверяем дату рождения", () -> {registrationPage.checkResult("Date of Birth", randomizeData.day + " " + months[Integer.parseInt(randomizeData.month)-1] + "," + randomizeData.year);});
         step("Проверяем область", () -> {registrationPage.checkResult("Subjects", randomizeData.subject);});
         step("Проверяем хобби", () -> {registrationPage.checkResult("Hobbies", randomizeData.hobbies);});
