@@ -32,11 +32,11 @@ public class AutomationPracticeFormTest {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = browser;
-        Configuration.browserSize = browserSize;
+        //Configuration.browser = browser;
+        //Configuration.browserSize = browserSize;
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = remote;
-        Configuration.browserVersion = browserVersion;
+        //Configuration.remote = remote;
+        //Configuration.browserVersion = browserVersion;
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
