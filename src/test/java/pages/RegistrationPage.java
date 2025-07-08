@@ -11,8 +11,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage {
 
     //=====HELPER VARIABLES=====//
+    public final String registrationPageURL = "/automation-practice-form";
     private final String
-            registrationPageURL = "/automation-practice-form",
             cssBorderColor = "border-color",
             cssRadioColor = "color",
             redColor = "rgb(220, 53, 69)",

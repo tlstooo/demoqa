@@ -30,7 +30,7 @@ public class SelenideTest {
     public void beforeEach() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
-    
+
     @BeforeAll
     static void beforeAll() {
 

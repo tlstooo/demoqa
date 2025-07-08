@@ -2,7 +2,6 @@ package utils;
 
 import com.github.javafaker.Faker;
 
-import java.util.Calendar;
 import java.util.Locale;
 
 public class RandomizeData {
@@ -17,16 +16,24 @@ public class RandomizeData {
             gender = faker.options().option("Male","Female","Other"),
             subject = faker.options().option("Computer Science","English","Chemistry","Maths","Commerce"),
             hobbies =  faker.options().option("Reading", "Music", "Sports"),
+            day = setDay(faker.number().numberBetween(1, 28)),
             pics = faker.options().option("pic.png","pic2.png","pic3.png"),
             year = String.valueOf(faker.number().numberBetween(1980, 2100)),
-            month = String.valueOf(faker.number().numberBetween(0, 11)),
-            day = String.valueOf(faker.number().numberBetween(1, 28)),
+            month = String.valueOf(faker.number().numberBetween(1, 11)),
             elevenDigitsPhoneNumber = (faker.number().numberBetween(1000000, 9999999) + String.valueOf(faker.number().numberBetween(0000, 9999))),
             currentAddress = faker.address().fullAddress(),
             state = faker.options().option("NCR","Uttar Pradesh","Haryana","Rajasthan"),
             city = setCity(state);
 
-            private String setCity(String state) {
+
+    private String setDay(int day) {
+        if (day < 10) {
+            day = Integer.parseInt("0" + day);
+        }
+        return Integer.toString(day);
+    }
+
+    private String setCity(String state) {
                 return switch (state) {
                     case "NCR" ->  faker.options().option("Delhi","Gurgaon","Noida");
                     case "Uttar Pradesh" ->  faker.options().option("Agra","Lucknow","Merrut");
