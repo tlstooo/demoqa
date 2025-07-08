@@ -17,13 +17,16 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-
+@Tag("parametrizeTest")
 public class ParametrizeTest {
 
     @BeforeAll
     public static void setup() {
-        Configuration.browser = "chrome";
+        Configuration.browserSize = System.getProperty("BROWSER_RESOLUTION");
+        Configuration.browser = System.getProperty("BROWSER");
         Configuration.pageLoadStrategy = "eager";
+        Configuration.remote = System.getProperty("SELENOID_URL");
+        Configuration.browserVersion = System.getProperty("BROWSER_VERSION");
     }
 
     @BeforeEach

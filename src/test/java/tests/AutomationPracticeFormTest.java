@@ -24,9 +24,12 @@ public class AutomationPracticeFormTest {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = System.getProperty("BROWSER_RESOLUTION");
+        Configuration.browser = System.getProperty("BROWSER");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = System.getProperty("SELENOID_URL");
+        Configuration.browserVersion = System.getProperty("BROWSER_VERSION");
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(

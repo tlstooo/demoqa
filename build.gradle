@@ -44,7 +44,7 @@ dependencies {
 
 tasks.withType(Test) {
     useJUnitPlatform()
-
+    systemProperties(System.getProperties())
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -59,3 +59,10 @@ tasks.register('automationPracticeForm', Test)
         includeTags("automation-practice-form")
     }
 }
+
+tasks.register('parametrizeTest', Test)
+        {
+            useJUnitPlatform {
+                includeTags("parametrizeTest")
+            }
+        }
