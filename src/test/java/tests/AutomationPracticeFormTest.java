@@ -20,10 +20,10 @@ public class AutomationPracticeFormTest {
     RandomizeData randomizeData = new RandomizeData();
 
     static String
-            browser = System.getProperty("BROWSER"),
-            browserSize = System.getProperty("BROWSER_RESOLUTION"),
-            remote = System.getProperty("SELENOID_URL"),
-            browserVersion = System.getProperty("BROWSER_VERSION");
+            browserName = System.getProperty("browserName"),
+            browserSize = System.getProperty("browserSize"),
+            remoteHost = System.getProperty("remoteHost"),
+            browserVersion = System.getProperty("browserVersion");
 
 
 
@@ -32,11 +32,11 @@ public class AutomationPracticeFormTest {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        //Configuration.browser = browser;
-        //Configuration.browserSize = browserSize;
+        Configuration.browser = browserName;
+        Configuration.browserSize = browserSize;
         Configuration.pageLoadStrategy = "eager";
-        //Configuration.remote = remote;
-        //Configuration.browserVersion = browserVersion;
+        Configuration.remote = remoteHost;
+        Configuration.browserVersion = browserVersion;
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();

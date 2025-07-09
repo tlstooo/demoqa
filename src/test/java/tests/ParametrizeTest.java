@@ -19,10 +19,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 @Tag("parametrizeTest")
 public class ParametrizeTest {
+    static String
+            browser = System.getProperty("browserName"),
+            browserSize = System.getProperty("browserSize"),
+            remote = System.getProperty("remoteHost"),
+            browserVersion = System.getProperty("browserVersion");
 
     @BeforeAll
     public static void setup() {
+        Configuration.browser = browser;
+        Configuration.browserSize = browserSize;
         Configuration.pageLoadStrategy = "eager";
+        Configuration.remote = remote;
+        Configuration.browserVersion = browserVersion;
 
     }
 
