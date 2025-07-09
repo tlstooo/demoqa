@@ -27,7 +27,8 @@ public class RandomizeData {
 
 
     private String setDay(int day) {
-        if (day < 10) {
+        if (day < 10)
+        {
             day = Integer.parseInt("0" + day);
         }
         return Integer.toString(day);
