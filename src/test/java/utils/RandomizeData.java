@@ -29,9 +29,11 @@ public class RandomizeData {
     private String setDay(int day) {
         if (day < 10)
         {
-            day = Integer.parseInt("0" + day);
+            return Integer.toString(day = Integer.parseInt("0" + day));
         }
-        return Integer.toString(day);
+        else {
+            return Integer.toString(day);
+        }
     }
 
     private String setCity(String state) {
