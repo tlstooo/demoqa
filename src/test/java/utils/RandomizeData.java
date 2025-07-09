@@ -16,7 +16,7 @@ public class RandomizeData {
             gender = faker.options().option("Male","Female","Other"),
             subject = faker.options().option("Computer Science","English","Chemistry","Maths","Commerce"),
             hobbies =  faker.options().option("Reading", "Music", "Sports"),
-            day = setDay(faker.number().numberBetween(1, 28)),
+            day = setDay(faker.number().numberBetween(10, 28)),
             pics = faker.options().option("pic.png","pic2.png","pic3.png"),
             year = String.valueOf(faker.number().numberBetween(1980, 2100)),
             month = String.valueOf(faker.number().numberBetween(1, 11)),
@@ -29,10 +29,10 @@ public class RandomizeData {
     private String setDay(int day) {
         if (day < 10)
         {
-            return Integer.toString(day = Integer.parseInt("0" + day));
+            return Integer.toString(day = Integer.parseInt("00" + day));
         }
         else {
-            return Integer.toString(day);
+            return Integer.toString(day = Integer.parseInt("0" + day));
         }
     }
 
