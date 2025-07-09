@@ -1,0 +1,16 @@
+{
+  "base": {
+    "project": "${JOB_BASE_NAME}",
+    "environment": "qa.guru",
+    "comment": "@tlsto",
+    "reportLink": "${BUILD_URL}",
+    "language": "en",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "7973048088:AAFlv5zY_-XrRDKXyOEIElOSLB_UkWDCFiM",
+    "chat": "-1002502229682",
+    "replyTo": ""
+  }
+}
