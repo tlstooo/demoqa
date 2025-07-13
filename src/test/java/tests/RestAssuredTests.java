@@ -1,6 +1,5 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
 
 import io.restassured.RestAssured;
@@ -17,11 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 @Tag("reqresTest")
 public class RestAssuredTests {
-    /*
-    Разработайте 5 автотестов на запросы из https://reqres.in/
-    Дайте код на ревью коллегам из вашего потока.
-    После ревью они должны поставить вашему репозиторию звездочку. К сдаче принимается дз с минимум 2-мя звездами.
-     */
+
     @BeforeAll
     static void beforeAll() {
         RestAssured.baseURI = "https://reqres.in/";
@@ -137,7 +132,4 @@ public class RestAssuredTests {
                 .body("id", is(Matchers.notNullValue()))
                 .body("createdAt", is(Matchers.notNullValue()));
     }
-
-
-
 }
