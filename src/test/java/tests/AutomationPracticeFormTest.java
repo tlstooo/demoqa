@@ -19,24 +19,17 @@ public class AutomationPracticeFormTest {
     RegistrationPage registrationPage = new RegistrationPage();
     RandomizeData randomizeData = new RandomizeData();
 
-    static String
-            browserName = System.getProperty("browserName"),
-            browserSize = System.getProperty("browserSize"),
-            remoteHost = System.getProperty("remoteHost"),
-            browserVersion = System.getProperty("browserVersion");
-
-
 
     public String[] months = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = browserName;
-        Configuration.browserSize = browserSize;
+        Configuration.browser = System.getProperty("browserName");
+        Configuration.browserSize = System.getProperty("browserSize");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = remoteHost;
-        Configuration.browserVersion = browserVersion;
+        Configuration.remote = System.getProperty("remoteHost");
+        Configuration.browserVersion = System.getProperty("browserVersion");
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
