@@ -118,8 +118,8 @@ public class RestAssuredTests {
     void checkCreateNewUser() {
         Faker faker = new Faker(new Locale("en"));
         String name = faker.name().firstName();
-        String email = faker.internet().emailAddress();
-        String userData = "{\"name\": \"" + name + "\"," + "\"job\": \""+ email +"\"}";
+        String job = faker.job().title();
+        String userData = "{\"name\": \"" + name + "\"," + "\"job\": \""+ job +"\"}";
         given()
                 .body(userData)
                 .header("x-api-key", "reqres-free-v1")
@@ -132,7 +132,7 @@ public class RestAssuredTests {
                 .statusCode(201)
                 .log().body()
                 .body("name", is(name))
-                .body("email", is(email))
+                .body("job", is(job))
                 .body("id", is(Matchers.notNullValue()))
                 .body("createdAt", is(Matchers.notNullValue()));
     }
