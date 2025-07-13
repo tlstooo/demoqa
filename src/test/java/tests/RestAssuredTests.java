@@ -53,6 +53,7 @@ public class RestAssuredTests {
     void checkUserData() {
         given()
                 .log().uri()
+                .header("x-api-key", "reqres-free-v1")
                 .get("/api/users/2")
                 .then()
                 .log().status()
