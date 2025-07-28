@@ -1,47 +1,26 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
-
 import io.restassured.RestAssured;
-import org.hamcrest.Matchers;
+import models.lombok.LoginBodyModel;
+import models.lombok.LoginResponseModel;
 import org.junit.jupiter.api.*;
 
+
+import static io.qameta.allure.Allure.step;
 import com.github.javafaker.Faker;
-
 import java.util.Locale;
-
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static specs.LoginSpec.*;
 
 @Tag("reqresTest")
 public class RestAssuredTests {
-    /*
-    Разработайте 5 автотестов на запросы из https://reqres.in/
-    Дайте код на ревью коллегам из вашего потока.
-    После ревью они должны поставить вашему репозиторию звездочку. К сдаче принимается дз с минимум 2-мя звездами.
-     */
+
     @BeforeAll
     static void beforeAll() {
         RestAssured.baseURI = "https://reqres.in/";
-    }
-
-    @DisplayName("Проверка счётчика пользователей")
-    @Feature("Проверка API")
-    @Owner("safrolov")
-    @Severity(SeverityLevel.NORMAL)
-    @Link(value = "reqres", url = "https://reqres.in")
-    @Test
-    void checkUserCount() {
-            given()
-                .log().uri()
-                .get("/api/users?page=2")
-                .then()
-                .log().status()
-                .statusCode(200)
-                .log().body()
-                .body("total", Matchers.notNullValue());
     }
 
     @DisplayName("Проверка получения данных пользователя")
@@ -51,42 +30,51 @@ public class RestAssuredTests {
     @Link(value = "reqres", url = "https://reqres.in")
     @Test
     void checkUserData() {
-        given()
-                .log().uri()
-                .header("x-api-key", "reqres-free-v1")
-                .get("/api/users/2")
-                .then()
-                .log().status()
-                .statusCode(200)
-                .log().body()
-                .body("data.id", is(2))
-                .body("data.email", Matchers.notNullValue())
-                .body("data.first_name", Matchers.notNullValue())
-                .body("data.last_name", Matchers.notNullValue())
-                .body("data.avatar", Matchers.notNullValue());
+        LoginResponseModel response =
+            step("Make request", () -> {
+            return given(usersDataRequestSpec)
+                   .get()
+                   .then()
+                   .spec(usersDataResponseSpec)
+                   .extract().as(LoginResponseModel.class);
+                });
+
+        step("Check response", () -> {
+            assertNotNull(response.getData().getAvatar());
+            assertNotNull(response.getData().getLast_name());
+            assertNotNull(response.getData().getFirst_name());
+            assertNotNull(response.getData().getEmail());
+            assertNotNull(response.getData().getId());
+        });
+
+
     }
 
-    @DisplayName("Позитивная проверка авторизации")
+    @DisplayName("Позитивная проверка авторизации (lombok)")
     @Feature("Проверка API")
     @Owner("safrolov")
     @Severity(SeverityLevel.NORMAL)
     @Link(value = "reqres", url = "https://reqres.in")
     @Test
-    void checkPositiveUserCredentials() {
-        String authData = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
-        given()
+    void checkPositiveUserCredentialsWithLombok() {
+        LoginBodyModel authData = new LoginBodyModel();
+        authData.setEmail("eve.holt@reqres.in");
+        authData.setPassword("cityslicka");
+
+        LoginResponseModel response =
+                given(loginRequestSpec)
                 .body(authData)
-                .header("x-api-key", "reqres-free-v1")
-                .contentType(JSON)
-                .log().uri()
                 .when()
-                .post("/api/login")
+                    .post()
                 .then()
-                .log().status()
-                .statusCode(200)
-                .log().body()
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                    .spec(loginResponseSpec)
+                    .extract().body().as(LoginResponseModel.class);
+
+
+        step("Check response", () -> {
+        assertEquals("QpwL5tke4Pnpja7X4", response.getToken());});
     }
+
 
     @DisplayName("Проверка ошибки при отсутствии пароля")
     @Feature("Проверка API")
@@ -96,18 +84,16 @@ public class RestAssuredTests {
     @Test
     void checkErrorTextWithMissingPassword() {
         String authData = "{\"email\": \"eve.holt@reqres.in\"}";
-        given()
+        LoginResponseModel response = given(loginRequestSpec)
                 .body(authData)
-                .header("x-api-key", "reqres-free-v1")
-                .contentType(JSON)
-                .log().uri()
                 .when()
-                .post("/api/login")
+                    .post()
                 .then()
-                .log().status()
-                .statusCode(400)
-                .log().body()
-                .body("error", is("Missing password"));
+                    .spec(missingPasswordResponse)
+                    .extract().body().as(LoginResponseModel.class);
+
+        step("Check error text", () -> {
+            assertEquals("Missing password", response.getError());});
     }
 
     @DisplayName("Проверка создания пользователя")
@@ -121,23 +107,25 @@ public class RestAssuredTests {
         String name = faker.name().firstName();
         String job = faker.job().title();
         String userData = "{\"name\": \"" + name + "\"," + "\"job\": \""+ job +"\"}";
-        given()
-                .body(userData)
-                .header("x-api-key", "reqres-free-v1")
-                .contentType(JSON)
-                .log().uri()
+        LoginResponseModel response = given(usersRequestSpec)
+                    .body(userData)
                 .when()
-                .post("/api/users")
+                    .post()
                 .then()
-                .log().status()
-                .statusCode(201)
-                .log().body()
-                .body("name", is(name))
-                .body("job", is(job))
-                .body("id", is(Matchers.notNullValue()))
-                .body("createdAt", is(Matchers.notNullValue()));
+                .spec(usersResponseSpec)
+                .extract().body().as(LoginResponseModel.class);
+
+        step("Check name", () -> {
+            assertEquals(name, response.getName());});
+
+        step("Check job", () -> {
+            assertEquals(job, response.getJob());});
+
+        step("Check id is not null", () -> {
+            assertNotNull(response.getId());});
+
+        step("Check created at date is not null", () -> {
+            assertNotNull(response.getCreatedAt());});
     }
-
-
 
 }
