@@ -22,6 +22,12 @@ public class AutomationPracticeFormTest {
 
     public String[] months = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
+    @BeforeEach
+    void beforeEach() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
+
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
@@ -39,7 +45,7 @@ public class AutomationPracticeFormTest {
         ));
         Configuration.browserCapabilities = capabilities;
 
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+
     }
     @AfterEach
     void afterEach() {
