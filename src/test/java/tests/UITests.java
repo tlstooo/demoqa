@@ -7,10 +7,10 @@ import static com.codeborne.selenide.Selenide.*;
 
 @Tag("uiTests")
 public class UITests {
-    static String
+   static String
             browser = System.getProperty("browserName"),
             browserSize = System.getProperty("browserSize"),
-            remote = System.getProperty("remoteHost"),
+            remote = System.getProperty("selenoidUrl"),
             browserVersion = System.getProperty("browserVersion");
 
     @BeforeAll
@@ -40,5 +40,7 @@ public class UITests {
         ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
         slides.shouldHave(CollectionCondition.size(bulletsCount));
     }
+
+
 
 }
