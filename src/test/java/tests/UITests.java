@@ -4,6 +4,7 @@ import com.codeborne.selenide.*;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
 @Tag("uiTests")
 public class UITests {
@@ -26,7 +27,10 @@ public class UITests {
     @BeforeEach
     @Owner("safrolov")
     public void before() {
+        step("Переходим на главную", () ->
+        {
         open("https://www.wildberries.ru/");
+        });
     }
 
     @DisplayName("Проверка соответствия количества баннеров количеству точек")
@@ -35,10 +39,13 @@ public class UITests {
     @Link(value = "mainpage", url = "https://www.wildberries.ru/")
     @Test
     public void checkBannerCount() {
-        ElementsCollection bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)");
-        int bulletsCount = bullets.size();
-        ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
-        slides.shouldHave(CollectionCondition.size(bulletsCount));
+        step("Получаем количество кнопок баннера", () ->
+        {
+            ElementsCollection bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)");
+            int bulletsCount = bullets.size();});
+            ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
+            slides.shouldHave(CollectionCondition.size(bulletsCount));
+        }
     }
 
 
