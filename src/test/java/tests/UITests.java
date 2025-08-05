@@ -27,10 +27,7 @@ public class UITests {
     @BeforeEach
     @Owner("safrolov")
     public void before() {
-        step("Переходим на главную", () ->
-        {
-        open("https://www.wildberries.ru/");
-        });
+        step("Переходим на главную", () -> {open("https://www.wildberries.ru/");});
     }
 
     @DisplayName("Проверка соответствия количества баннеров количеству точек")
