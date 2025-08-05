@@ -5,7 +5,7 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import static com.codeborne.selenide.Selenide.*;
 
-@Tag("uiTest")
+@Tag("uiTests")
 public class UITests {
     static String
             browser = System.getProperty("browserName"),
