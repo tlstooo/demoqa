@@ -31,6 +31,7 @@ public class RestAssuredTests {
     void checkUserCount() {
             given()
                 .log().uri()
+                .header("x-api-key", "reqres-free-v1")
                 .get("/api/users?page=2")
                 .then()
                 .log().status()
