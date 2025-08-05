@@ -37,7 +37,6 @@ public class UITests {
     public void checkBannerCount() {
         ElementsCollection bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)");
         int bulletsCount = bullets.size();
-
         ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
         slides.shouldHave(CollectionCondition.size(bulletsCount));
     }
