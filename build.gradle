@@ -83,3 +83,10 @@ tasks.register('WBAPITests', Test)
                 includeTags("WBAPITests")
             }
         }
+
+tasks.register('uiTests', Test)
+        {
+            useJUnitPlatform {
+                includeTags("uiTests")
+            }
+        }
