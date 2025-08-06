@@ -36,9 +36,12 @@ public class UITests {
     @Link(value = "mainpage", url = "https://www.wildberries.ru/")
     @Test
     public void checkBannerCount() {
+        step("Получаем количество кнопок баннера", () ->
+        {
             ElementsCollection bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)");
             int bulletsCount = bullets.size();
             ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
             slides.shouldHave(CollectionCondition.size(bulletsCount));
+        });
         }
     }
