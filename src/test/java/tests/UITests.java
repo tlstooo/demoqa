@@ -11,7 +11,7 @@ public class UITests {
    static String
             browser = System.getProperty("browserName"),
             browserSize = System.getProperty("browserSize"),
-            remote = System.getProperty("selenoidUrl"),
+            remote = System.getProperty("remoteHost"),
             browserVersion = System.getProperty("browserVersion");
 
     @BeforeAll
