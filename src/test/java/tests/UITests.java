@@ -11,7 +11,7 @@ public class UITests {
    static String
             browser = System.getProperty("browserName"),
             browserSize = System.getProperty("browserSize"),
-            remote = System.getProperty("remoteHost"),
+            remoteHost = System.getProperty("remoteHost"),
             browserVersion = System.getProperty("browserVersion");
 
     @BeforeAll
@@ -19,7 +19,7 @@ public class UITests {
         Configuration.browser = browser;
         Configuration.browserSize = browserSize;
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = remote;
+        Configuration.remote = remoteHost;
         Configuration.browserVersion = browserVersion;
 
     }
@@ -27,7 +27,7 @@ public class UITests {
     @BeforeEach
     @Owner("safrolov")
     public void before() {
-        step("Переходим на главную", () -> {open("https://www.wildberries.ru/");});
+        open("https://www.wildberries.ru/");
     }
 
     @DisplayName("Проверка соответствия количества баннеров количеству точек")
