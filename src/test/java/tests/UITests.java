@@ -26,8 +26,8 @@ public class UITests {
    MainPage
            mainPage = new MainPage();
 
-   static int
-           slidesCount = Integer.parseInt(System.getProperty("singleSlidesCount"));
+    /*static int
+           slidesCount = Integer.parseInt(System.getProperty("singleSlidesCount"));*/
 
     @BeforeAll
     public static void setup() {
@@ -84,9 +84,9 @@ public class UITests {
     public void checkSingleSlideCount() {
     step("Открываем главную страницу", () ->
     { mainPage.openMainPage();});
-    step("Получаем количество объекто в слайдере", () ->
+    step("Получаем количество объектов в слайдере", () ->
     {
-        mainPage.checkSingleSlideMinimumCount(slidesCount);});
+        mainPage.checkSingleSlideMinimumCount(6);});
     }
 }
 
