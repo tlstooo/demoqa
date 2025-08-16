@@ -12,7 +12,8 @@ public class MainPage {
     public final String mainPageURL = "/";
     private final ElementsCollection
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
-            slides = $$(".j-big-banners-block .swiper-wrapper");
+            slides = $$(".j-big-banners-block .swiper-wrapper"),
+            singleItemsSlider = $$(".swiper-slide-duplicate");
 
     public MainPage openMainPage() {
         open(mainPageURL);
@@ -21,16 +22,13 @@ public class MainPage {
 
     public MainPage checkEqualBulletsCount() {
 
-        ElementsCollection bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)");
         int bulletsCount = bullets.size();
-        ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
         slides.shouldHave(CollectionCondition.size(bulletsCount));
 
         return this;
     }
 
     public MainPage checkSingleSlideMinimumCount(int slidesCount) {
-        ElementsCollection singleItemsSlider = $(".j-single-banner").$$(".swiper-slide-duplicate");
         singleItemsSlider.shouldHave(CollectionCondition.size(slidesCount));
         return this;
     }
