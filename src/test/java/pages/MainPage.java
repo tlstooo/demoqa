@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -23,6 +24,16 @@ public class MainPage {
         return this;
     }
 
+    public MainPage scrollUntilExists(String css, int stepPx, int maxSteps) {
+        for (int i = 0; i < maxSteps; i++) {
+            if ($(css).exists()) return this;
+            executeJavaScript("window.scrollBy(0, arguments[0]);", stepPx);
+            sleep(300);
+        }
+        $(css).should(exist);
+        return this;
+    }
+
     public MainPage checkEqualBulletsCount() {
 
         int bulletsCount = bullets.size();
@@ -32,7 +43,7 @@ public class MainPage {
     }
 
     public MainPage scrollToSwiperContainer() {
-        swiperContainer.scrollTo();
+        swiperContainer.should(exist).scrollTo();
         return this;
     }
 

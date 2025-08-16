@@ -86,6 +86,8 @@ public class UITests {
     public void checkSingleSlideCount() {
         step("Открываем главную страницу", () ->
         {   mainPage.openMainPage();});
+        step("Ищем контейнер слайдера", () ->
+        {   mainPage.scrollUntilExists(".j-single-banner", 800, 15);});
         step("Пролистываем до контейнера слайдера", () ->
         {   mainPage.scrollToSwiperContainer();});
         step("Получаем количество объектов в слайдере", () ->
