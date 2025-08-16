@@ -29,7 +29,7 @@ public class MainPage {
     }
 
     public MainPage checkSingleSlideMinimumCount(int slidesCount) {
-        singleItemsSlider.shouldHave(CollectionCondition.size(slidesCount));
+        singleItemsSlider.shouldHave(CollectionCondition.sizeGreaterThan(slidesCount));
         return this;
     }
 }
