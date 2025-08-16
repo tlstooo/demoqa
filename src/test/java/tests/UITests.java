@@ -27,7 +27,7 @@ public class UITests {
            mainPage = new MainPage();
 
     static int
-           slidesCount = 6;//Integer.parseInt(System.getProperty("singleSlidesCount"));
+           slidesCount = Integer.parseInt(System.getProperty("singleSlidesCount"));
 
     @BeforeAll
     public static void setup() {

@@ -15,6 +15,8 @@ public class MainPage {
             slides = $$(".j-big-banners-block .swiper-wrapper"),
             singleItemsSlider = $$(".banners-catalog-custom__container");
 
+    private final SelenideElement
+            swiperContainer = $(".j-single-banner");
 
     public MainPage openMainPage() {
         open(mainPageURL);
@@ -26,6 +28,11 @@ public class MainPage {
         int bulletsCount = bullets.size();
         slides.shouldHave(CollectionCondition.size(bulletsCount));
 
+        return this;
+    }
+
+    public MainPage scrollToSwiperContainer() {
+        swiperContainer.scrollTo();
         return this;
     }
 
