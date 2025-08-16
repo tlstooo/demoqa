@@ -13,7 +13,9 @@ public class MainPage {
     private final ElementsCollection
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
-            singleItemsSlider = $(".j-single-banner").$$(".banners-catalog-custom__container .swiper-slide")
+            singleItemsSlider = $(".j-single-banner").$$(".banners-catalog-custom__container .swiper-slide");
+
+
     public MainPage openMainPage() {
         open(mainPageURL);
         return this;
