@@ -27,7 +27,7 @@ public class UITests {
            mainPage = new MainPage();
 
     static int
-           slidesCount = Integer.parseInt(System.getProperty("singleSlidesCount"));
+           slidesCount = 6;//Integer.parseInt(System.getProperty("singleSlidesCount"));
 
     @BeforeAll
     public static void setup() {
@@ -61,6 +61,8 @@ public class UITests {
         Attach.browserConsoleLogs();
         Attach.getVideoUrl();
         Attach.addVideo();
+        Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
     }
 
     @DisplayName("Проверка соответствия количества баннеров количеству точек")

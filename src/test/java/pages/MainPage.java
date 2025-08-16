@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
 
-    public final String mainPageURL = "/";
+    public final String mainPageURL = "https://www.wildberries.ru/";
     private final ElementsCollection
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
