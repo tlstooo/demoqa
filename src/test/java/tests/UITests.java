@@ -26,8 +26,8 @@ public class UITests {
    MainPage
            mainPage = new MainPage();
 
-    /*static int
-           slidesCount = Integer.parseInt(System.getProperty("singleSlidesCount"));*/
+    static int
+           slidesCount = 6; //Integer.parseInt(System.getProperty("singleSlidesCount"));
 
     @BeforeAll
     public static void setup() {
@@ -82,11 +82,10 @@ public class UITests {
     @Link(value = "mainpage", url = "https://www.wildberries.ru/")
     @Test
     public void checkSingleSlideCount() {
-    step("Открываем главную страницу", () ->
-    { mainPage.openMainPage();});
-    step("Получаем количество объектов в слайдере", () ->
-    {
-        mainPage.checkSingleSlideMinimumCount(6);});
+        step("Открываем главную страницу", () ->
+        {   mainPage.openMainPage();});
+        step("Получаем количество объектов в слайдере", () ->
+        {   mainPage.checkSingleSlideCount(6);});
     }
 }
 

@@ -28,7 +28,7 @@ public class MainPage {
         return this;
     }
 
-    public MainPage checkSingleSlideMinimumCount(int slidesCount) {
+    public MainPage checkSingleSlideCount(int slidesCount) {
         singleItemsSlider.shouldHave(CollectionCondition.sizeGreaterThan(slidesCount));
         return this;
     }
