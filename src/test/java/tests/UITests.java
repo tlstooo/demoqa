@@ -1,8 +1,17 @@
 package tests;
 
 import com.codeborne.selenide.*;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.Attach;
 import io.qameta.allure.*;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
+
+import pages.MainPage;
+
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -14,6 +23,12 @@ public class UITests {
             remoteHost = System.getProperty("remoteHost"),
             browserVersion = System.getProperty("browserVersion");
 
+   MainPage
+           mainPage = new MainPage();
+
+   static int
+           slidesCount = Integer.parseInt(System.getProperty("singleSlidesCount"));
+
     @BeforeAll
     public static void setup() {
         Configuration.browser = browser;
@@ -22,26 +37,56 @@ public class UITests {
         Configuration.remote = remoteHost;
         Configuration.browserVersion = browserVersion;
 
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
     }
+
 
     @BeforeEach
     @Owner("safrolov")
     public void before() {
-        open("https://www.wildberries.ru/");
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        step("Открываем сайт", () ->
+        {open("https://www.wildberries.ru/");});
+    }
+
+    @AfterEach
+    void afterEach() {
+        Attach.screenshotAs("Last Screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.getVideoUrl();
+        Attach.addVideo();
     }
 
     @DisplayName("Проверка соответствия количества баннеров количеству точек")
-    @Feature("Баннеры")
+    @Feature("Слайдеры")
     @Severity(SeverityLevel.NORMAL)
     @Link(value = "mainpage", url = "https://www.wildberries.ru/")
     @Test
     public void checkBannerCount() {
-        step("Получаем количество кнопок баннера", () ->
+        step("Открываем главную страницу", () ->
+        { mainPage.openMainPage();});
+        step("Получаем количество кнопок карусели", () ->
         {
-            ElementsCollection bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)");
-            int bulletsCount = bullets.size();
-            ElementsCollection slides = $$(".j-big-banners-block .swiper-wrapper");
-            slides.shouldHave(CollectionCondition.size(bulletsCount));
-        });
+            mainPage.checkEqualBulletsCount();});
         }
+
+    @DisplayName("Проверка наличия карточек в слайдере на главной странице")
+    @Feature("Слайдеры")
+    @Severity(SeverityLevel.NORMAL)
+    @Link(value = "mainpage", url = "https://www.wildberries.ru/")
+    @Test
+    public void checkSingleSlideCount() {
+    step("Открываем главную страницу", () ->
+    { mainPage.openMainPage();});
+    step("Получаем количество объекто в слайдере", () ->
+    {
+        mainPage.checkSingleSlideMinimumCount(slidesCount);});
     }
+}
+
