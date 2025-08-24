@@ -59,6 +59,7 @@ public class MainPage {
     }
 
     public MainPage firstProductClick() {
+        sleep(300);
         productCard.first().click();
         return this;
     }
