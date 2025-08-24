@@ -58,7 +58,7 @@ public class MainPage {
     }
 
     public MainPage firstProductClick() {
-        productCard.click();
+        productCard.pressEnter();
         return this;
     }
 
