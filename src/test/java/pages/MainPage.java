@@ -5,8 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
@@ -65,7 +64,7 @@ public class MainPage {
     }
 
     public MainPage checkArticleIsNotNull() {
-        article.shouldNotBe(text(""));
+        article.shouldBe(not(null));
         return this;
     }
 
