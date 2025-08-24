@@ -89,7 +89,7 @@ public class UITests {
         step("Ищем контейнер слайдера", () ->
         {   mainPage.scrollUntilExists(".j-single-banner", 800, 15);});
         step("Пролистываем до контейнера слайдера", () ->
-        {   mainPage.scrollToSwiperContainer();});
+        {   mainPage.firstProductClick();});
         step("Получаем количество объектов в слайдере", () ->
         {   mainPage.checkSingleSlideCount(6);});
     }
