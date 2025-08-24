@@ -16,7 +16,7 @@ public class MainPage {
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
             singleItemsSlider = $$(".banners-catalog-custom__container"),
-            productCard = $$(".product-card__wrapper");
+            productCard = $$(".product-card__top-wrap");
 
 
     private final SelenideElement
