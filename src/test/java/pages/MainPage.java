@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -14,10 +15,13 @@ public class MainPage {
     private final ElementsCollection
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
-            singleItemsSlider = $$(".banners-catalog-custom__container");
+            singleItemsSlider = $$(".banners-catalog-custom__container"),
+            product = $$(".main-page__product");
+
 
     private final SelenideElement
-            swiperContainer = $(".j-single-banner");
+            swiperContainer = $(".j-single-banner"),
+            article = $("#productNmId");
 
     public MainPage openMainPage() {
         open(mainPageURL);
@@ -51,4 +55,15 @@ public class MainPage {
         singleItemsSlider.shouldHave(CollectionCondition.sizeGreaterThan(slidesCount));
         return this;
     }
+
+    public MainPage firstProductClick() {
+        product.first().click();
+        return this;
+    }
+
+    public MainPage checkArticleIsNotNull() {
+        article.shouldNot(null);
+        return this;
+    }
+
 }

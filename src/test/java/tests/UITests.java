@@ -93,5 +93,19 @@ public class UITests {
         step("Получаем количество объектов в слайдере", () ->
         {   mainPage.checkSingleSlideCount(6);});
     }
+
+    @DisplayName("Проверка наличия артикула в карточке товара")
+    @Feature("Карточка товара")
+    @Severity(SeverityLevel.NORMAL)
+    @Link(value = "mainpage", url = "https://www.wildberries.ru/")
+    @Test
+    public void checkArticleNumber() {
+        step("Открываем главную страницу", () ->
+        {   mainPage.openMainPage();});
+        step("Переходим в карточку первого товара на странице", () ->
+        {   mainPage.firstProductClick();});
+        step("Проверяем, что артикул существует", () ->
+        {   mainPage.checkArticleIsNotNull();});
+    }
 }
 
