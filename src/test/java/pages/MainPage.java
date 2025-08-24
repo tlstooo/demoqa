@@ -11,14 +11,12 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
 
-    public final String mainPageURL = "https://www.wildberries.ru/";
+    public final String mainPageURL = "https://www.wildberries.ru";
     private final ElementsCollection
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
             productCard = $$(".j-open-full-product-card"),
             singleItemsSlider = $$(".banners-catalog-custom__container");
-
-
 
     private final SelenideElement
             swiperContainer = $(".j-single-banner"),
