@@ -51,7 +51,7 @@ public class UITests {
     public void before() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         step("Открываем сайт", () ->
-        {open("https://www.wildberries.ru/");});
+        {open("https://www.wildberries.ru");});
     }
 
     @AfterEach
@@ -68,7 +68,7 @@ public class UITests {
     @DisplayName("Проверка соответствия количества баннеров количеству точек")
     @Feature("Слайдеры")
     @Severity(SeverityLevel.NORMAL)
-    @Link(value = "mainpage", url = "https://www.wildberries.ru/")
+    @Link(value = "mainpage", url = "https://www.wildberries.ru")
     @Test
     public void checkBannerCount() {
         step("Открываем главную страницу", () ->
@@ -81,7 +81,7 @@ public class UITests {
     @DisplayName("Проверка наличия карточек в слайдере на главной странице")
     @Feature("Слайдеры")
     @Severity(SeverityLevel.NORMAL)
-    @Link(value = "mainpage", url = "https://www.wildberries.ru/")
+    @Link(value = "mainpage", url = "https://www.wildberries.ru")
     @Test
     public void checkSingleSlideCount() {
         step("Открываем главную страницу", () ->
@@ -97,11 +97,11 @@ public class UITests {
     @DisplayName("Проверка наличия артикула в карточке товара")
     @Feature("Карточка товара")
     @Severity(SeverityLevel.NORMAL)
-    @Link(value = "mainpage", url = "https://www.wildberries.ru/")
+    @Link(value = "mainpage", url = "https://www.wildberries.ru")
     @Test
     public void checkArticleNumber() {
-        step("Открываем главную страницу", () ->
-        {   mainPage.openMainPage();});
+        //step("Открываем главную страницу", () ->
+        //{   mainPage.openMainPage();});
         step("Переходим в карточку первого товара на странице", () ->
         {   mainPage.firstProductClick();});
         step("Проверяем, что артикул существует", () ->
