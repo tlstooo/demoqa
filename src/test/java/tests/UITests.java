@@ -97,7 +97,7 @@ public class UITests {
     @DisplayName("Проверка наличия артикула в карточке товара")
     @Feature("Карточка товара")
     @Severity(SeverityLevel.NORMAL)
-    //@Link(value = "mainpage", url = "https://www.wildberries.ru/")
+    @Link(value = "mainpage", url = "https://www.wildberries.ru/")
     @Test
     public void checkArticleNumber() {
         step("Открываем главную страницу", () ->
