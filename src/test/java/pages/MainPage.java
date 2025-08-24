@@ -16,7 +16,7 @@ public class MainPage {
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
             productCard = $$("div.main-page__content .j-card-link"),
-            singleItemsSlider = $$(".banners-catalog-custom__container");
+            singleItemsSlider = $$(".j-open-full-product-card");
 
 
 
