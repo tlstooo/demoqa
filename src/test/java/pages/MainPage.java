@@ -22,7 +22,7 @@ public class MainPage {
     private final SelenideElement
             swiperContainer = $(".j-single-banner"),
             article = $("#productNmId"),
-            productCard = $("div.main-page__content div.product-card__top-wrap");
+            productCard = $("div.main-page__content .product-card__top-wrap");
 
 
 
