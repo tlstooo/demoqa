@@ -15,10 +15,10 @@ public class MainPage {
     private final ElementsCollection
             bullets = $$(".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)"),
             slides = $$(".j-big-banners-block .swiper-wrapper"),
-            productCard = $$(".j-open-full-product-card"),
             singleItemsSlider = $$(".banners-catalog-custom__container");
 
     private final SelenideElement
+            productCard = $(".j-open-full-product-card"),
             swiperContainer = $(".j-single-banner"),
             article = $("#productNmId");
 
@@ -60,7 +60,7 @@ public class MainPage {
 
     public MainPage firstProductClick() {
         sleep(300);
-        productCard.first().click();
+        productCard.click();
         return this;
     }
 
