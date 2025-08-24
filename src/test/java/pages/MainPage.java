@@ -21,7 +21,7 @@ public class MainPage {
     private final SelenideElement
             swiperContainer = $(".j-single-banner"),
             article = $("#productNmId"),
-            product = $(".main-page__product");
+            productCard = $(".product-card");
 
     public MainPage openMainPage() {
         open(mainPageURL);
@@ -57,7 +57,7 @@ public class MainPage {
     }
 
     public MainPage firstProductClick() {
-        product.click();
+        productCard.click();
         return this;
     }
 
