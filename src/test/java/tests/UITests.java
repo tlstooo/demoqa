@@ -89,7 +89,7 @@ public class UITests {
         step("Ищем контейнер слайдера", () ->
         {   mainPage.scrollUntilExists(".j-single-banner", 800, 15);});
         step("Пролистываем до контейнера слайдера", () ->
-        {   mainPage.firstProductClick();});
+        {   mainPage.scrollToSwiperContainer();});
         step("Получаем количество объектов в слайдере", () ->
         {   mainPage.checkSingleSlideCount(6);});
     }
@@ -100,8 +100,10 @@ public class UITests {
     @Link(value = "mainpage", url = "https://www.wildberries.ru")
     @Test
     public void checkArticleNumber() {
-        //step("Открываем главную страницу", () ->
-        //{   mainPage.openMainPage();});
+        step("Открываем главную страницу", () ->
+        {   mainPage.openMainPage();});
+        step("Ищем карточку товара", () ->
+        {   mainPage.scrollUntilExists(".j-open-full-product-card", 400, 15);});
         step("Переходим в карточку первого товара на странице", () ->
         {   mainPage.firstProductClick();});
         step("Проверяем, что артикул существует", () ->
