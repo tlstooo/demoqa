@@ -64,7 +64,7 @@ public class MainPage {
     }
 
     public MainPage checkArticleIsNotNull() {
-        article.shouldBe(not(null));
+        article.shouldBe(visible);
         return this;
     }
 
