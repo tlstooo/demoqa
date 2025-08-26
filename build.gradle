@@ -77,10 +77,10 @@ tasks.register('reqresTest', Test)
         }
 
 
-tasks.register('WBAPITests', Test)
+tasks.register('APITests', Test)
         {
             useJUnitPlatform {
-                includeTags("WBAPITests")
+                includeTags("APITests")
             }
         }
 

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
-@Tag("WBAPITests")
+@Tag("APITests")
 public class WBAPITests {
 
     @BeforeAll
